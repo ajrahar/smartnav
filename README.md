@@ -1,14 +1,15 @@
 # Smart MotoNav 🏍️
 
-Aplikasi navigasi motor pintar dengan prediksi konsumsi bahan bakar menggunakan AI (TensorFlow Lite) dan OpenStreetMap routing.
+Smart MotoNav adalah aplikasi navigasi pintar khusus pengendara sepeda motor yang mengintegrasikan kecerdasan buatan (AI) untuk prediksi konsumsi bahan bakar secara real-time. Aplikasi ini membantu pengendara merencanakan perjalanan yang hemat energi dengan mempertimbangkan spesifikasi kendaraan dan beban pengendara.
 
 ## ✨ Features
 
-- 🧠 **AI-Powered Fuel Prediction** - Prediksi konsumsi BBM menggunakan TensorFlow Lite
-- 🗺️ **Smart Routing** - Perhitungan rute optimal dengan OSRM
-- ⏱️ **Real-time Traffic Score** - Perhitungan kondisi lalu lintas berdasarkan waktu
-- 📱 **Cross-Platform** - Support Android & iOS
-- 🎨 **Modern UI** - Material Design 3 dengan interactive map
+- 🧠 **AI-Powered Fuel Prediction** - Prediksi konsumsi BBM menggunakan TensorFlow Lite yang dikustomisasi berdasarkan CC motor dan berat badan pengendara.
+- 🗺️ **Smart Routing** - Perhitungan rute optimal dengan OSRM (Open Source Routing Machine) menggunakan data OpenStreetMap.
+- ⚙️ **Personalized Settings** - Fitur pengaturan profil kendaraan (Kapasitas Mesin/CC & Berat Badan) untuk akurasi prediksi AI yang lebih tinggi.
+- ⏱️ **Real-time Traffic Score** - Perhitungan estimasi durasi dan kondisi lalu lintas.
+- 📱 **Cross-Platform** - Dikembangkan dengan Flutter untuk dukungan Android & iOS.
+- 🎨 **Modern UI** - Antarmuka modern berbasis Material Design 3 dengan peta interaktif.
 
 ## 🚀 Quick Start
 
@@ -16,7 +17,7 @@ Aplikasi navigasi motor pintar dengan prediksi konsumsi bahan bakar menggunakan 
 
 - Flutter SDK ^3.9.2
 - Android Studio / Xcode
-- Device atau emulator
+- Device Android/iOS atau Emulator
 
 ### Installation
 
@@ -34,65 +35,74 @@ flutter run
 
 ## 📁 Project Structure
 
+Struktur project menggunakan pendekatan **Feature-First Architecture** untuk skalabilitas dan maintainability:
+
 ```
 lib/
-├── main.dart                                    # Entry point
+├── main.dart                                    # Entry point & App Config
 └── features/
-    └── navigation/
-        ├── data/services/
-        │   ├── fuel_prediction_service.dart     # AI Service
-        │   └── osrm_service.dart                # Routing Service
+    ├── navigation/                              # Fitur Navigasi Utama
+    │   ├── data/services/
+    │   │   ├── fuel_prediction_service.dart     # AI Integration (TFLite)
+    │   │   └── osrm_service.dart                # Routing Service (API)
+    │   ├── providers/
+    │   │   └── navigation_provider.dart         # State Management (Riverpod)
+    │   └── presentation/
+    │       └── map_screen.dart                  # UI Peta Navigasi
+    └── settings/                                # Fitur Pengaturan Profil
+        ├── data/
+        │   └── settings_service.dart            # Local Storage
         ├── providers/
-        │   └── navigation_provider.dart         # State Management
+        │   └── settings_provider.dart           # State Management
         └── presentation/
-            └── map_screen.dart                  # Map UI
+            └── settings_screen.dart             # UI Input Data Kendaraan
 ```
 
 ## 🔧 Tech Stack
 
-- **Framework:** Flutter 3.9.2
+- **Framework:** Flutter 3.9.2 (Dart)
+- **Architecture:** MVVM / Feature-First
 - **State Management:** Riverpod 2.5.1
-- **AI Engine:** TensorFlow Lite 0.10.4
-- **Maps:** FlutterMap 6.1.0 + OpenStreetMap
-- **Routing:** OSRM API
-- **GPS:** Geolocator 11.0.0
+- **Artificial Intelligence:** TensorFlow Lite (On-device Machine Learning)
+- **Maps & Location:** FlutterMap, latlong2, Geolocator
+- **Routing API:** OSRM (Open Source Routing Machine)
+- **Local Storage:** Shared Preferences
 
 ## 📚 Documentation
 
-- [Technical Documentation](TECHNICAL_DOCUMENTATION.md) - Dokumentasi teknis lengkap untuk skripsi
-- [Walkthrough](/.gemini/antigravity/brain/56822a66-c92f-4901-b0f9-503e7e2ba068/walkthrough.md) - Implementation walkthrough
+- [Technical Documentation](TECHNICAL_DOCUMENTATION.md) - Dokumentasi teknis mendalam untuk keperluan Skripsi/Tesis.
 
 ## 🧪 Testing
 
 ```bash
-# Run static analysis
+# Jalankan analisis statis kode
 flutter analyze
 
-# Run tests (when available)
+# Jalankan unit test
 flutter test
 ```
 
-## 📱 Screenshots
+## 📸 Screenshots
 
-*Coming soon*
+*(Tambahkan screenshot aplikasi di sini)*
 
 ## 🛣️ Roadmap
 
-- [ ] User profile management (CC motor, berat badan)
-- [ ] GPS real-time tracking
-- [ ] Multiple route options
-- [ ] Fuel cost calculation
-- [ ] Trip history & analytics
-- [ ] Offline mode
+- [x] Basic Navigation & Routing
+- [x] AI Fuel Prediction Implementation
+- [x] User Profile Management (Input CC Motor & Berat Badan)
+- [ ] GPS Real-time Turn-by-turn Navigation
+- [ ] Multi-route Selection (Eco vs Fastest)
+- [ ] Trip History & Analytics
+- [ ] Offline Map Support
 
 ## 📄 License
 
-This project is created for academic purposes (Skripsi).
+Project ini dibuat untuk tujuan akademis (Skripsi/Tugas Akhir).
 
 ## 👨‍💻 Author
 
-Miftahul - Smart MotoNav Project
+**Miftahul** - Smart MotoNav Project
 
 ---
-
 **Built with ❤️ using Flutter & TensorFlow Lite**
